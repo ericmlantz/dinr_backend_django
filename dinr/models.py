@@ -37,12 +37,11 @@ class Restaurant(models.Model):
   rest_url = models.URLField("Website URL", blank=True)
   rest_phone = models.CharField("Phone Number", blank=True, max_length=20)
   rest_street = models.CharField('Steet Address',max_length=150)
-  rest_apt = models.CharField('Apartment Line', max_length=100)
+  rest_apt = models.CharField('Apartment Line', max_length=100, blank=True)
   rest_city = models.CharField('City', max_length=100)
   rest_state = models.CharField('State', max_length=2)
   rest_zip = models.CharField('Zip Code', max_length=10)
   
-
   def __str__(self):
         return self.rest_name
 
@@ -53,10 +52,11 @@ class User(models.Model):
   username = models.CharField('username', max_length=50, unique=True)
   password = models.CharField('Password', max_length=50)
   street_loc = models.CharField('Steet Address',max_length=150)
-  apt_loc = models.CharField('Apartment Line', max_length=100)
+  apt_loc = models.CharField('Apartment Line', max_length=100,blank=True)
   city_loc = models.CharField('City', max_length=100)
   state_loc = models.CharField('State', max_length=2)
   zip_loc = models.CharField('Zip Code', max_length=10)
+  matches = models.ManyToManyField(Restaurant, blank=True)
 
   def __str__(self):
         return self.username
